@@ -1,4 +1,4 @@
-from flask import Flask, render_template, jsonify
+from flask import Flask, render_template, jsonify, request
 import os
 import requests
 
@@ -12,7 +12,14 @@ def home():
 
 @app.route('/generate', methods=['GET'])
 def generate_random_user():
-    response = requests.get(random_user_url)
+    return generate_user_with_nationality()
+
+@app.route('/generate/<nationality>', methods=['GET'])
+def generate_user_with_nationality(nationality=None):
+    params = {}
+    if nationality:
+        params['nat'] = nationality
+    response = requests.get(random_user_url, params=params)
     if response.ok:
         return jsonify(response.json())
     else:
