@@ -12,6 +12,7 @@
         <nav>
             <ul>
                 <li><a href="/">Home</a></li>
+                <li><button id="toggleDarkMode">Toggle Dark Mode</button></li>
             </ul>
         </nav>
     </header>
@@ -26,3 +27,45 @@
     <script src="script.js"></script>
 </body>
 </html>
+```
+```css
+/* Light mode styles */
+body {
+  background-color: white;
+  color: black;
+}
+
+/* Dark mode styles */
+body.dark-mode {
+  background-color: #333;
+  color: white;
+}
+
+header, footer {
+  background-color: #f0f0f0;
+}
+
+header.dark-mode, footer.dark-mode {
+  background-color: #222;
+}
+
+nav ul {
+  list-style: none;
+  padding: 0;
+}
+
+nav ul li {
+  display: inline;
+  margin-right: 10px;
+}
+```
+```js
+document.addEventListener('DOMContentLoaded', function () {
+    const toggleDarkModeButton = document.getElementById('toggleDarkMode');
+
+    toggleDarkModeButton.addEventListener('click', function() {
+        document.body.classList.toggle('dark-mode');
+        document.querySelector('header').classList.toggle('dark-mode');
+        document.querySelector('footer').classList.toggle('dark-mode');
+    });
+});
