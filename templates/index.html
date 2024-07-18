@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random User Generator</title>
+    <style>
+        #userProfile {
+            display: none;
+            margin-top: 20px;
+        }
+        button {
+            cursor: pointer;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+        .user-details {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+<button id="generateUser">Generate Random User</button>
+<div id="userProfile">
+    <img src="" alt="User's profile picture" id="userImage" style="width:100px;height:100px;">
+    <div class="user-details" id="userName"></div>
+    <div class="user-details" id="userEmail"></div>
+    <div class="user-details" id="userLocation"></div>
+</div>
+<script>
+    async function generateUser() {
+        try {
+            const response = await fetch('https://randomuser.me/api/');
+            const data = await response.json();
+            const user = data.results[0];
+            document.getElementById('userImage').src = user.picture.large;
+            document.getElementById('userName').textContent = `Name: ${user.name.first} ${user.name.last}`;
+            document.getElementById('userEmail').textContent = `Email: ${user.email}`;
+            document.getElementById('userLocation').textContent = `Location: ${user.location.country}`;
+            document.getElementById('userLooking').style.display = 'block';
+        } catch (error) {
+            console.error('Failed to fetch random jump user:', error);
+        }
+    }
+    document.getElementById('generateUser').addEventListener('click', generateUser);
+</script>
+</body>
+</html>
