@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .profile-container {
+            width: 80%;
+            margin: 20px auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .profile-entry {
+            margin-bottom: 10px;
+        }
+        .profile-entry label {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="profile-container">
+        <div class="profile-entry">
+            <label for="name">Name:</label>
+            <span id="name">${USER_NAME}</span>
+        </div>
+
+        <div class="profile-entry">
+            <label for="address">Address:</label>
+            <span id="address">${USER_ADDRESS}</span>
+        </div>
+        
+        <div class="profile-entry">
+            <label for="email">Email:</label>
+            <span id="email">${USER_EMAIL}</span>
+        </div>
+
+        <div class="profile-entry">
+            <label for="phone">Phone Number:</label>
+            <span id="phone">${USER_PHONE}</span>
+        </div>
+
+        <div class="profile-entry">
+            <label for="dob">Date of Birth:</label>
+            <span id="dob">${USER_DOB}</span>
+        </div>
+
+        <div class="profile-entry">
+            <label for="envVar">Environment Variable Check:</label>
+            <span id="envVar">${ENV_VAR}</span>
+        </div>
+    </div>
+    <script>
+        document.getElementById('envVar').innerText = process.env.ENV_VAR || 'No Environment Variable Set';
+    </script>
+</body>
+</html>
